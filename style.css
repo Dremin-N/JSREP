@@ -7,10 +7,11 @@ body {
   min-height: 100vh;
   padding: 100px;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  gap: 20px;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
   align-content: center;
   background-image: radial-gradient(circle, #f2a663, #bf3f3f);
 }
@@ -31,4 +32,8 @@ body {
 .card:hover {
   transform: scale(1.02, 1.02);
   box-shadow: 1px 1px 5px #002029aa, 1px 1px 15px #002029aa;
+}
+
+.card:first-child {
+  grid-column-end: span 6;
 }
