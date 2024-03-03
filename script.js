@@ -64,3 +64,191 @@ let title = document.querySelector("#title");
 new_element.innerText = "Сегодня солнечно, минус 15";
 console.log(title);
 document.body.insertBefore(new_element, title.nextSibling);
+
+//! Задача 2.7 В скрипте объявлен массив values, который состоит из чисел. В HTML-документе есть множество тегов <p> с классом elems. Необходимо дописать скрипт так, чтобы он удалил все теги <p> с классом elems, значение которых входит в массив values
+
+const values = [10, 50, 1000];
+
+let elems = document.querySelectorAll(".elems");
+
+//* Через includes
+// elems.forEach((el) => {
+//   if (values.includes(Number(el.innerText))) {
+//     el.remove();
+//   }
+// });
+
+//* Через index of
+
+elems.forEach((el) => {
+  if (values.indexOf(Number(el.innerText)) !== -1) {
+    el.remove();
+  }
+});
+
+//! Задача 2.8 В HTML-документе заданы два <div> тега с идентификаторами div1 и div2. Напишите скрипт, который позволит перенести содержимое тега с идентификатором div1 в конец тега с идентификатором div2.
+
+let div1 = document.querySelector("#div1");
+
+let contentToMove = div1.innerHTML;
+console.log(contentToMove);
+div1.nextElementSibling.innerHTML += contentToMove;
+
+//! Задача 2.9 В HTML-документе есть тег <ul> c идентификатором first. Внутри этого тега есть теги <li>. Напишите скрипт, который создает новый тег <li> в переменной new_element и добавляет в элемент <ul> с идентификатором first. После добавления нового элемента выведите в консоль общее количество тегов <li> в теге <ul> с идентификатором first.
+
+let ulElement = document.querySelector("#first");
+new_element = document.createElement("li");
+new_element.innerText = 4;
+ulElement.appendChild(new_element);
+
+//! Задача 2.10 В скрипте объявлена переменная values, которая содержит массив из строк. В HTML-верстке есть два тега <div> с классами div1 и div2. Допишите скрипт так, чтобы все теги <p> из тега с идентификатором div1, значение которого встречается в списке values, переместились в тег с идентификатором div2.
+
+const valuesStr = ["велосипед", "ролики", "лыжи"];
+
+var div1Str = document.getElementById("div1_str");
+var div2Str = document.getElementById("div2_str");
+
+var paragraphs = div1Str.getElementsByTagName("p");
+for (var i = 0; i < paragraphs.length; i++) {
+  var paragraphText = paragraphs[i].textContent.trim();
+
+  if (valuesStr.includes(paragraphText)) {
+    div2Str.appendChild(paragraphs[i]);
+    i--;
+  }
+}
+
+//! Задача 2.11 В скрипте объявлена переменная task, в которой хранится список из строк. В HTML-верстке есть тег <div> с идентификатором root. Допишите скрипт так, чтобы на основе значений списка сформировались теги <p> и добавились в элемент с идентификатором root.
+
+let tasks = [
+  "Проверить документы",
+  "Отправить начальству",
+  "Организовать собрание",
+];
+
+for (let val of tasks) {
+  let elem = document.createElement("p");
+  elem.innerText = val;
+  document.querySelector("#pure").appendChild(elem);
+}
+
+//! Задача 2.12 Напишите программу, которая считает количество <div>-, <p>- и <h2>-тегов и записывает его в объект tags, как в примере. Выведите сформированный объект в консоль.
+
+const tags = {};
+tags["div"] = document.getElementsByTagName("div").length;
+tags["p"] = document.querySelectorAll("p").length;
+tags["h2"] = document.querySelectorAll("h2").length;
+console.log(tags);
+
+//! Задача 2.13 В HTML-документе есть тег <ul> с идентификатором tasks, и внутри него есть несколько тегов <li> с текстом. Напишите скрипт, который позволяет отсортировать элементы <li> в теге <ul> по длине содержимого.
+
+let ulTask = document.querySelector("#tasks");
+let liTask = ulTask.querySelectorAll("li");
+let listArray = Array.from(liTask);
+listArray.sort(function (a, b) {
+  return a.innerText.length - b.innerText.length;
+});
+ulTask.innerHTML = "";
+
+listArray.forEach((el) => {
+  ulTask.appendChild(el);
+});
+
+let input = document.createElement("input");
+input.type = "number";
+input.min = "10";
+input.max = "150";
+input.step = "0.1";
+input.name = "weight";
+
+let label = document.createElement("label");
+label.innerText = "Выберите вес";
+
+input.id = "wght";
+label.setAttribute("for", "wght");
+
+document.body.append(input, label);
+
+if (!input.hasAttribute("placeholder")) {
+  input.setAttribute("placeholder", "55.5");
+}
+
+if (input.hasAttribute("max")) {
+  input.removeAttribute("max");
+}
+
+let items = document.querySelectorAll(".item");
+let index = 0;
+setInterval(function () {
+  items[index].classList.add("active");
+  for (let i = 0; i < items.length; i++) {
+    if (i !== index) {
+      items[i].classList.contains("active") &&
+        items[i].classList.remove("active");
+    }
+  }
+  index++;
+  if (index === items.length) {
+    index = 0;
+  }
+  let colorStart = getColor([100, 200], [50, 200], [200, 256]);
+  let colorEnd = getColor([100, 150], [50, 100], [200, 256]);
+  items[index].style.backgroundImage = setGradient([colorStart, colorEnd]);
+}, 2000);
+
+function getColor(r, g, b) {
+  let red = getNumber(...r);
+  let green = getNumber(...g);
+  let blue = getNumber(...b);
+  return `rgb(${red},${green},${blue})`;
+}
+
+function setGradient(colors, angle = 120) {
+  return `linear-gradient(${angle}deg, ${colors})`;
+}
+
+let header = document.querySelector("header");
+let footer = document.querySelector("footer");
+footer.innerText = new Date().toLocaleDateString();
+items[0].parentElement.style.height =
+  window.innerHeight - (header.offsetHeight + footer.offsetHeight) + "px";
+
+//! Задча 3.1 В HTML-документе задан тег <div> с идентификатором div_elem. Напишите скрипт, который добавит в стиль данного элемента ширину и высоту по 100 пикселей.
+
+let divElem = document.getElementById("div_elem");
+
+divElem.style.height = 100 + "px";
+divElem.style.width = 100 + "px";
+divElem.style.border = "1px solid red";
+
+//! ЗАдача 3.2 В HTML-документе задан тег <p> с идентификатором rainbow. Напишите скрипт, который указывает в стиле синий цвет текста (#2980b9).
+
+let pElem = document.getElementById("rainbow");
+// pElem.style.color = "blue";
+
+//!   Задача 3.4 В HTML-документе есть тег <p> c идентификатором rainbow. Внутри этого тега указано число. Реализуйте скрипт, который делает преобразование в зависимости от следующих условий:
+
+if (Number(pElem.innerText) > 0 && Number(pElem.innerText) < 10) {
+  pElem.style.color = "#c0392b";
+} else if (
+  parseFloat(pElem.innerText) >= 10 &&
+  parseFloat(pElem.innerText) <= 20
+) {
+  pElem.style.color = "#e17055";
+} else {
+  pElem.style.color = "#fdcb6e";
+}
+
+//! Задача 3.5 В HTML-документе есть тег <div> с идентификатором photo. Внутри этого тега указана ссылка на картинку. Необходимо написать скрипт, который:
+
+let photo = document.getElementById("photo");
+let link = photo.querySelector("a").getAttribute("href");
+console.log(link);
+
+let imgElem = document.createElement("img");
+imgElem.src = link;
+imgElem.alt = "logo";
+imgElem.style.height = "200px";
+imgElem.style.width = "300px";
+
+photo.replaceChild(imgElem, photo.querySelector("a"));
