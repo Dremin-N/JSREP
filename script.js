@@ -252,3 +252,41 @@ imgElem.style.height = "200px";
 imgElem.style.width = "300px";
 
 photo.replaceChild(imgElem, photo.querySelector("a"));
+
+//! Задача 3.6 В HTML-документе задан тег <select> c идентификатором numbers. Напишите скрипт, который добавит внутрь этого тега несколько тегов <option> со значениями от 10 до 550 с шагом 10. Значение у тега <option> должно быть указано внутри и в атрибуте value.
+
+let select = document.querySelector("#numbers");
+
+for (let i = 10; i <= 550; i += 10) {
+  let opt = document.createElement("option");
+  opt.value = i;
+  opt.innerText = i;
+  select.appendChild(opt);
+}
+
+//! Задача 3.7 В HTML-документе задан тег <select>. В скрипте объявлена переменная countries, в которой указаны некоторые страны. Доработайте скрипт так, чтобы в тег <select> добавились теги <option> по одному на каждую страну из массива countries. В качестве значения тега option укажите название страны, а в качестве атрибута — value первые две буквы страны в нижнем регистре (маленькими буквами).
+
+const countries = [
+  "Brazil",
+  "USA",
+  "England",
+  "Russia",
+  "India",
+  "Germany",
+  "Italy",
+  "England",
+  "Russia",
+];
+let duplicateCountries = [];
+
+let selectCntry = document.querySelector("#countries");
+
+countries.forEach((el) => {
+  if (!duplicateCountries.includes(el)) {
+    let opt = document.createElement("option");
+    opt.value = el.slice(0, 2).toLowerCase();
+    opt.innerText = el;
+    selectCntry.appendChild(opt);
+  }
+  duplicateCountries.push(el);
+});
