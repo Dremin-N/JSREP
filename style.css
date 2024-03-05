@@ -64,4 +64,20 @@ footer {
   text-align: center;
 }
 
+button {
+  border: none;
+  border-radius: 7px;
+  background-color: orangered;
+  color: #fff;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
 
+button:hover {
+  box-shadow: 1px 1px 7px orangered;
+}
+
+#test {
+  border: 2px solid green;
+  padding: 5px 5px;
+}

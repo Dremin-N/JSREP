@@ -290,3 +290,21 @@ countries.forEach((el) => {
   }
   duplicateCountries.push(el);
 });
+
+function buttonClick(event) {
+  const elem = document.createElement("p");
+  elem.innerText = `Click ${event.target.id} ${event.currentTarget.id}`;
+  document.querySelector("body").appendChild(elem);
+}
+
+function testClick(event) {
+  const elem = document.createElement("p");
+  elem.innerText = `Click ${event.target.id} ${event.currentTarget.id}`;
+  document.querySelector("body").appendChild(elem);
+}
+
+document
+  .querySelector("#test")
+  .addEventListener("click", testClick, { capture: true });
+
+document.querySelector("button").addEventListener("click", buttonClick);
