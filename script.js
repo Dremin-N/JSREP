@@ -291,20 +291,35 @@ countries.forEach((el) => {
   duplicateCountries.push(el);
 });
 
-function buttonClick(event) {
+function bodyClick(event) {
+  if (event.target === this) {
+    return;
+  }
   const elem = document.createElement("p");
   elem.innerText = `Click ${event.target.id} ${event.currentTarget.id}`;
   document.querySelector("body").appendChild(elem);
 }
 
-function testClick(event) {
+document.querySelector("body").addEventListener("click", bodyClick);
+
+menu.onclick = function (event) {
+  let href = event.target.getAttribute("href");
+  alert(href);
+  return false;
+};
+
+// function onScroll(event) {
+//   const elem = document.createElement("p");
+//   elem.innerText = `scroll ${window.scrollY}`;
+//   document.querySelector("body").appendChild(elem);
+// }
+
+// window.addEventListener("scroll", onScroll);
+
+function onResize(event) {
   const elem = document.createElement("p");
-  elem.innerText = `Click ${event.target.id} ${event.currentTarget.id}`;
+  elem.innerText = `size ${window.innerWidth} ${window.innerHeight}`;
   document.querySelector("body").appendChild(elem);
 }
 
-document
-  .querySelector("#test")
-  .addEventListener("click", testClick, { capture: true });
-
-document.querySelector("button").addEventListener("click", buttonClick);
+window.addEventListener("resize", onResize);
