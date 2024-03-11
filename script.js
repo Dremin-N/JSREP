@@ -323,3 +323,25 @@ function onResize(event) {
 }
 
 window.addEventListener("resize", onResize);
+
+//! Задача 4.1 В HTML-документе задан тег <button> с идентификатором btn и тег <p> с идентификатором val. Напишите скрипт, который выводит в консоль содержимое тега <p> при клике на кнопку.
+// function onClick1(event) {
+//   console.log(document.querySelector("#val").innerHTML);
+// }
+
+// document.querySelector("#btn").addEventListener("click", onClick1);
+
+//! Задача 4.2 В HTML-документе задан тег <button> с идентификатором btn и тег <input> с идентификатором val. Напишите скрипт, который выводит в консоль значение тега <input> при клике на кнопку.
+function onClick1(event) {
+  console.log(document.querySelector("#val").value);
+}
+
+document.querySelector("#btn").addEventListener("click", onClick1);
+
+//! Задача 4.3 В HTML-документе задан тег <div> c идентификатором square. Он представляет собой синий квадрат. Напишите скрипт, который позволяет сделать <div> прозрачным (opacity: 0) при клике по нему.
+
+function onClickOpacity(event) {
+  this.style.opacity = 0;
+}
+
+document.querySelector("#square").addEventListener("click", onClickOpacity);

@@ -81,3 +81,12 @@ button:hover {
   border: 2px solid green;
   padding: 5px 5px;
 }
+
+#square {
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  margin: 10px;
+
+  border: 1px solid black;
+}
