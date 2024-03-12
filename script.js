@@ -340,8 +340,34 @@ document.querySelector("#btn").addEventListener("click", onClick1);
 
 //! Задача 4.3 В HTML-документе задан тег <div> c идентификатором square. Он представляет собой синий квадрат. Напишите скрипт, который позволяет сделать <div> прозрачным (opacity: 0) при клике по нему.
 
-function onClickOpacity(event) {
-  this.style.opacity = 0;
+// function onClickOpacity(event) {
+//   this.style.opacity = 0;
+// }
+
+// document.querySelector("#square").addEventListener("click", onClickOpacity);
+
+//! Задача 4.5 В HTML-документе задан тег <button> с идентификатором delete и тег <ul> c идентификатором points и c элементами <li> внутри. Напишите скрипт, который позволяет удалить последний элемент <li> в списке <ul> при нажатии на кнопку.
+
+function onClickDelete(event) {
+  let lastChild = document.querySelector("#points");
+  lastChild.removeChild(lastChild.lastElementChild);
 }
 
-document.querySelector("#square").addEventListener("click", onClickOpacity);
+document.querySelector("#delete").addEventListener("click", onClickDelete);
+
+//! Задача 4.6 В HTML-документе задан тег <div> c идентификатором square в виде красного квадрата. У него есть атрибут style с указанными высотой и шириной в 100 пикселей. Напишите скрипт, который уменьшает ширину и высоту квадрата на 10% при клике по нему.
+
+function onClickWidthHeight(event) {
+  this.style.width = this.offsetWidth * 0.9 + "px";
+  this.style.height = this.offsetHeight * 0.9 + "px";
+}
+
+document.querySelector("#square").addEventListener("click", onClickWidthHeight);
+
+//! Задача 4.7 В HTML-документе задан тег <button> с классом copy. Напишите скрипт, который позволит при нажатии на кнопку <button> создать ее копию и расположить в конце тега body.
+
+function onClickClone(event) {
+  body.appendChild(this.cloneNode(true));
+}
+
+document.querySelector(".copy").addEventListener("click", onClickClone);
