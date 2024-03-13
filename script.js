@@ -371,3 +371,32 @@ function onClickClone(event) {
 }
 
 document.querySelector(".copy").addEventListener("click", onClickClone);
+
+//* Нажатие на клавишу всплывает окно
+// document.addEventListener("keydown", (event) => {
+//   const keyName = event.key;
+//   alert("Нажата клавиша " + keyName);
+// });
+
+//! focus
+input1.onblur = function () {
+  if (!input1.value.includes("+")) {
+    input1.classList.add("invalid");
+    error.innerHTML = "Пожалуйста, введите правильный номер телефона";
+  }
+};
+
+input1.onfocus = function () {
+  if (this.classList.contains("invalid")) {
+    this.classList.remove("invalid");
+    error.innerHTML = "";
+  }
+};
+
+// input1.onchange = function () {
+//   alert("Фокус ушел, инпут изменен");
+// };
+
+input1.oninput = function () {
+  alert("инпут изменен после каждого символа");
+};

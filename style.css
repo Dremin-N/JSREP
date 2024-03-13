@@ -88,3 +88,11 @@ button:hover {
   background-color: blue;
   margin: 10px;
 }
+
+#error {
+  color: red;
+}
+
+.invalid {
+  border-color: red;
+}
