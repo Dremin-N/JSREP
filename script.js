@@ -400,3 +400,34 @@ input1.onfocus = function () {
 input1.oninput = function () {
   alert("инпут изменен после каждого символа");
 };
+
+//! Задача 4.8 В HTML-документе есть несколько тегов <p>. Внутри них указаны числа. Напишите скрипт, который позволяет при нажатии на любой параграф увеличить его содержимое на единицу.
+
+// const paragraphses = document.querySelectorAll("p");
+
+// paragraphses.forEach(function (paragraph) {
+//   paragraph.addEventListener("click", function () {
+//     let currentnumber = parseFloat(paragraph.textContent);
+//     let newNumber = currentnumber + 1;
+//     paragraph.textContent = newNumber;
+//   });
+// });
+
+//! Задача 4.9 В HTML-документе есть два тега <div> с идентификаторами div1 и div2 с элементами <p> внутри. Напишите скрипт, который перемещает тег <p> из одного тега <div> в другой при клике по этому элементу <p>.
+
+let div_1 = document.querySelector("#div_1");
+let div_2 = document.querySelector("#div_2");
+
+div_1.addEventListener("click", function (event) {
+  let target = event.target;
+  if (target.tagName === "P") {
+    div_2.appendChild(target);
+  }
+});
+
+div_2.addEventListener("click", function (event) {
+  let target = event.target;
+  if (target.tagName === "P") {
+    div_1.appendChild(target);
+  }
+});
